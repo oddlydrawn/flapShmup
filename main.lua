@@ -35,41 +35,16 @@ function love.update(dt)
     if quitPressed() then
       love.event.quit()
     end
+
     if restartPressed() then
       init()
     end
   else
-
-    hero:update(dt)
-
-    hero:checkGroundCol(ground)
-    hero:checkCeilingCol(ceiling)
-
-    if buildings:overlaps(hero) then
-      hero.isAlive = false
-      love.audio.play(medExplosion)
-    end
-
-    hero:checkProjectileBuildingCol(buildings)
-
-    local x = hero.pos.x
-    camera:setPos(x, 0)
-
-    x = camera.x
-    buildings:update(x)
-
-    local y = ground.rect.y
-    ground:setPos(x, y)
-
-    y = ceiling.rect.y
-    ceiling:setPos(x, y)
-
-    enemies:update(dt)
-    enemies:setPositions(camera.x, buildings)
-
-    local numEnemies = enemies:getNumEnemies()
-    hero:checkProjectilesEnemyCol(enemies, numEnemies)
-
+    updateHero(dt)
+    updateCamera()
+    updateBuildings()
+    updateGroundCeiling()
+    updateEnemies(dt)
     camera:draw()
   end
 end
@@ -78,18 +53,14 @@ function love.draw()
   camera:set()
 
   buildings:draw()
-
   ceiling:draw()
   ground:draw()
-
   enemies:draw()
-
   hero:draw()
 
   if isPaused then
     drawPausePrompt()
   end
-
 
   if hero.isAlive == false then
     drawGameOverPrompt()
@@ -135,5 +106,44 @@ end
 
 function quitPressed()
   return love.keyboard.isDown("q")
+end
+
+function updateHero(dt)
+  hero:update(dt)
+
+  hero:checkGroundCol(ground)
+  hero:checkCeilingCol(ceiling)
+
+  if buildings:overlaps(hero) then
+    hero.isAlive = false
+    love.audio.play(medExplosion)
+  end
+
+  hero:checkProjectileBuildingCol(buildings)
+end
+
+function updateCamera()
+  local x = hero.pos.x
+  camera:setPos(x, 0)
+end
+
+function updateBuildings()
+  local x = camera.x
+  buildings:update(x)
+end
+
+function updateGroundCeiling()
+  local x = camera.x
+
+  ground:setXPos(x)
+  ceiling:setXPos(x)
+end
+
+function updateEnemies(dt)
+  enemies:update(dt)
+  enemies:setPositions(camera.x, buildings)
+
+  local numEnemies = enemies:getNumEnemies()
+  hero:checkProjectilesEnemyCol(enemies, numEnemies)
 end
 

@@ -1,4 +1,4 @@
-Ceiling = {}
+local Ceiling = {}
 Ceiling.rect = require "rectangle"
 Ceiling.rect = Rect:new()
 Ceiling.rect:set(0, -15, 1000, 50)
@@ -15,6 +15,10 @@ end
 function Ceiling:setPos(x, y)
   self.rect.x = x
   self.rect.y = y
+end
+
+function Ceiling:setXPos(x)
+  self.rect.x = x
 end
 
 return Ceiling

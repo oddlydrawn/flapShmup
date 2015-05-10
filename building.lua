@@ -1,20 +1,24 @@
 Building = {}
 
 function Building:newDown()
-  newObj = {pos = require "vector", 
-  rect = require "rectangle", 
-  img = love.graphics.newImage("assets/building.png"), 
-  up = false}
+  local image = love.graphics.newImage("assets/building.png")
+  local upOrDown = false
 
-  self.__index = self
-  return setmetatable(newObj, self)
+  return Building:new(image, upOrDown)
 end
 
 function Building:newUp()
-  newObj = {pos = require "vector", 
-  rect = require "rectangle", 
-  img = love.graphics.newImage("assets/buildingUp.png"), 
-  up = true}
+  local image = love.graphics.newImage("assets/buildingUp.png")
+  local upOrDown = true
+
+  return Building:new(image, upOrDown)
+end
+
+function Building:new(image, upOrDown)
+  newObj = {pos = require "vector",
+  rect = require "rectangle",
+  img = image,
+  up = upOrDown}
 
   self.__index = self
   return setmetatable(newObj, self)

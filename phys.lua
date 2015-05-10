@@ -31,4 +31,3 @@ function Phys:sclVel(scalar)
   self.velY = self.velY * scalar
 end
 
-

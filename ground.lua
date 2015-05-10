@@ -1,4 +1,4 @@
-Ground = {}
+local Ground = {}
 Ground.rect = require "rectangle"
 Ground.rect = Rect:new()
 Ground.rect:set(0,565, 1000, 50)
@@ -15,6 +15,10 @@ end
 function Ground:setPos(x, y)
   self.rect.x = x
   self.rect.y = y
+end
+
+function Ground:setXPos(x, y)
+  self.rect.x = x
 end
 
 return Ground

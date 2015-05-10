@@ -53,20 +53,16 @@ end
 
 function Buildings:update(cameraX)
   for i =1, 5 do
-    for j = 1, 1 do
+    local x = Buildings.building[i][1].pos.x;
+    local w = Buildings.building[i][1].img:getWidth()
 
-      local x = Buildings.building[i][j].pos.x;
-      local w = Buildings.building[i][j].img:getWidth()
+    if x + w < cameraX then
+      xCurrent = xCurrent + xSpacing
+      local y = love.math.random() * yRange
+      y = y + yMin
 
-      if x + w < cameraX then
-        xCurrent = xCurrent + xSpacing
-        local y = love.math.random() * yRange
-        y = y + yMin
-
-        Buildings.building[i][1]:setPos(xCurrent, y)
-        Buildings.building[i][2]:setPos(xCurrent, y)
-      end
-
+      Buildings.building[i][1]:setPos(xCurrent, y)
+      Buildings.building[i][2]:setPos(xCurrent, y)
     end
   end
 end
@@ -74,7 +70,7 @@ end
 function Buildings:draw()
   for i =1, 5 do
     for j = 1, 2 do
-        Buildings.building[i][j]:draw()
+      Buildings.building[i][j]:draw()
     end
   end
 end

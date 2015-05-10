@@ -1,7 +1,7 @@
---[
--- Code obtained from NovaFusion
---   http://nova-fusion.com/2011/04/19/cameras-in-love2d-part-1-the-basics/
---]
+--[[
+ Code obtained from NovaFusion
+   http://nova-fusion.com/2011/04/19/cameras-in-love2d-part-1-the-basics/
+--]]
 
 local camera = {}
 camera.pos = require "vector"

@@ -1,6 +1,6 @@
-Enemies = {}
+local Enemies = {}
 Enemies.enemy = {}
-local numEnemies = 5
+local numEnemies = 3
 for i =1, numEnemies do
   Enemies.enemy[i] = require "enemy"
   Enemies.enemy[i] = Enemy:new()
@@ -39,19 +39,20 @@ end
 function Enemies:setPositions(camX, buildings)
   for i =1, numEnemies do
     if Enemies.enemy[i].pos.x < camX - 100 then
-
-      if currentX < camX + love.graphics.getWidth() then
-        currentX = camX + love.graphics.getWidth() + 100
+      local offScreenRight = camX + love.graphics.getWidth()
+      if currentX < offScreenRight then
+        currentX = offScreenRight + 100
       end
 
-      Enemies:setRandomPos(Enemies.enemy[i])
+      local enemy = Enemies.enemy[i]
+      Enemies:setRandomPos(enemy)
 
-      while buildings:overlaps(Enemies.enemy[i]) do
-        Enemies:setRandomPos(Enemies.enemy[i])
+      while buildings:overlaps(enemy) do
+        Enemies:setRandomPos(enemy)
       end
 
-      Enemies.enemy[i].isAlive = true
-      Enemies.enemy[i].isExploding = false
+      enemy.isAlive = true
+      enemy.isExploding = false
       currentX = currentX + additionalX
     end
   end
@@ -82,3 +83,4 @@ function Enemies:draw()
 end
 
 return Enemies
+

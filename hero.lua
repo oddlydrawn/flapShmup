@@ -1,4 +1,4 @@
-Hero = {}
+local Hero = {}
 Hero.pos = require "vector"
 Hero.pos = Vector:new()
 
@@ -13,8 +13,8 @@ Hero.img = love.graphics.newImage("assets/ship.png")
 Hero.projectiles = require "projectiles"
 Hero.projectiles = Projectiles:new()
 
-laserDecoder = love.sound.newDecoder("assets/laser.wav")
-laserSound = love.audio.newSource(laserDecoder)
+local laserDecoder = love.sound.newDecoder("assets/laser.wav")
+local laserSound = love.audio.newSource(laserDecoder)
 
 function Hero:init()
   self.pos.x = 300
@@ -35,26 +35,8 @@ end
 function Hero:update(dt)
   self.phys.accelY = 6
 
-  if jumpPressed() then
-    if self.hasJumped == false then
-      self.phys.velY = 0
-      self.phys.accelY = -225
-      self.hasJumped = true
-    end
-  else
-    self.hasJumped = false
-  end
-
-  if love.keyboard.isDown("x") then
-    if self.hasShot == false then
-      self.projectiles:fire(self.pos.x, self.pos.y)
-      self.hasShot = true
-
-      love.audio.play(laserSound)
-    end
-  else
-    self.hasShot = false
-  end
+  self:processJumps()
+  self:processShooting()
 
   self.phys:sclAccel(dt)
   self.phys:addAccelToVel()
@@ -98,15 +80,43 @@ end
 function Hero:draw()
   self.projectiles:draw()
 
-  love.graphics.setColor(128, 128, 128, 255)
   love.graphics.setColor(255, 255, 255, 255)
   local x = self.pos.x - 20
   local y = self.pos.y - 10
   love.graphics.draw(self.img, x, y)
 end
 
+function Hero:processJumps()
+  if jumpPressed() then
+    if self.hasJumped == false then
+      self.phys.velY = 0
+      self.phys.accelY = -225
+      self.hasJumped = true
+    end
+  else
+    self.hasJumped = false
+  end
+end
+
+function Hero:processShooting()
+  if firePressed() then
+    if self.hasShot == false then
+      self.projectiles:fire(self.pos.x, self.pos.y)
+      self.hasShot = true
+
+      love.audio.play(laserSound)
+    end
+  else
+    self.hasShot = false
+  end
+end
+
 function jumpPressed()
   return love.keyboard.isDown("z")
+end
+
+function firePressed()
+  return love.keyboard.isDown("x")
 end
 
 return Hero
