@@ -1,9 +1,9 @@
 # flapShmup
 A flappy bird shoot em up created with love2d.
 
-![GitHub Logo](https://38.media.tumblr.com/2d332829959633d16fd896aea6bded4a/tumblr_no40yvl8891txpt1fo2_500.gif)
+![Enemy shot down](https://38.media.tumblr.com/2d332829959633d16fd896aea6bded4a/tumblr_no40yvl8891txpt1fo2_500.gif "shooting enemies")
 
-![GitHub Logo](https://33.media.tumblr.com/98567dcf02758f071c6752060b95db76/tumblr_no40yvl8891txpt1fo1_r2_500.gif)
+![Particles](https://33.media.tumblr.com/98567dcf02758f071c6752060b95db76/tumblr_no40yvl8891txpt1fo1_r2_500.gif "particles")
 
 I used the following two pages since this was my first time playing with love2d.
 I probably should have read up on lua a bit more before starting the project.
