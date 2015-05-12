@@ -13,7 +13,7 @@ time](http://www.headchant.com/2010/11/27/love2d-tutorial-part-1-invaders-must-d
 
 [NovaFusion's camera page](http://nova-fusion.com/2011/04/19/cameras-in-love2d-part-1-the-basics/)
 
-[Amble font by Punchout](http://www.fontsquirrel.com/fonts/amble)
+[Amble font by Punchcut](http://www.fontsquirrel.com/fonts/amble)
 
 [SFX created with bfxr](http://www.bfxr.net/)
 
