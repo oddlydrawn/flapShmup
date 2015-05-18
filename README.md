@@ -1,5 +1,5 @@
 # flapShmup
-A flappy bird shoot em up created with love2d.
+A flappy bird shoot em up created with love2d.. LÖVE.. LÖVE2d.. the game framework formerly known as love2d?
 
 ![Enemy shot down](https://38.media.tumblr.com/2d332829959633d16fd896aea6bded4a/tumblr_no40yvl8891txpt1fo2_500.gif "shooting enemies")
 
